@@ -7,12 +7,15 @@ import com.example.demo.model.api.AccountListResponse;
 import com.example.demo.model.entity.Account;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class GreetService implements GreetInterface {
 
+    private static final Logger logger = LoggerFactory.getLogger(GreetService.class);
     @Autowired
     private AccountRepoInterface AccountRepoInterface;
     
@@ -43,6 +46,7 @@ public class GreetService implements GreetInterface {
     @Override
     public List<AccountListResponse> GetListAccounts() {
         try {
+            logger.info("Hello");
             List<Account> accounts = this.AccountRepoInterface.GetAccounts();
             List<AccountListResponse> response = new ArrayList<>();
             for (Account acc : accounts) {
