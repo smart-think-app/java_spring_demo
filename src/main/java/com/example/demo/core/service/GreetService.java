@@ -1,12 +1,13 @@
 package com.example.demo.core.service;
 
-import com.example.demo.async.PrintRunnable;
-import com.example.demo.async.PrintThread;
 import com.example.demo.model.api.GreetResponse;
 import com.example.demo.core.inter.*;
 import com.example.demo.core.inter.repo.AccountRepoInterface;
+import com.example.demo.model.api.AccountListResponse;
+import com.example.demo.model.entity.Account;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,16 +18,13 @@ public class GreetService implements GreetInterface {
     
     @Override
     public GreetResponse getGreet() {
-        Thread t1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("Hello World");
-                try {
-                    Thread.sleep(5000);
-                } catch (Exception e) {
-                }
-                System.out.println("Hello World");
+        Thread t1 = new Thread(() -> {
+            System.out.println("Hello World");
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
             }
+            System.out.println("Hello World");
         });
         t1.start();
         return new GreetResponse("Hello World");
@@ -39,6 +37,20 @@ public class GreetService implements GreetInterface {
             return result;
         } catch (Exception e) {
             return false;
+        }
+    }
+
+    @Override
+    public List<AccountListResponse> GetListAccounts() {
+        try {
+            List<Account> accounts = this.AccountRepoInterface.GetAccounts();
+            List<AccountListResponse> response = new ArrayList<>();
+            for (Account acc : accounts) {
+                response.add(new AccountListResponse(acc.getName(), acc.getId()));
+            }
+            return response;
+        } catch (Exception e) {
+            return new ArrayList<>();
         }
     }
 }

@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.core.inter.GreetInterface;
 import com.example.demo.model.api.*;
+import java.util.List;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +25,12 @@ public class GreetController {
     @RequestMapping("/greet-list")
     public GreetListResponse sayGreetMany() {
         return new GreetListResponse();
+    }
+    
+    @RequestMapping("/accounts-list")
+    public List<AccountListResponse> GetAccountsList(){
+        List<AccountListResponse> response = this.greetSvc.GetListAccounts();
+        return response;
     }
 
     @RequestMapping(value = "/greet", method = RequestMethod.POST)

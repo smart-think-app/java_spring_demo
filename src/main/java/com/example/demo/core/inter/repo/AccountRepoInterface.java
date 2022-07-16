@@ -4,10 +4,14 @@
  */
 package com.example.demo.core.inter.repo;
 
+import com.example.demo.model.entity.Account;
+import java.util.List;
+
 /**
  *
  * @author DELL
  */
 public interface AccountRepoInterface {
     public boolean Insert(String name);
+    public List<Account> GetAccounts();
 }

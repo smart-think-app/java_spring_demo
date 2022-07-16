@@ -4,7 +4,9 @@
  */
 package com.example.demo.core.inter;
 
+import com.example.demo.model.api.AccountListResponse;
 import com.example.demo.model.api.GreetResponse;
+import java.util.List;
 
 /**
  *
@@ -13,4 +15,5 @@ import com.example.demo.model.api.GreetResponse;
 public interface GreetInterface {
     GreetResponse getGreet();
     public boolean AddAccount(String text);
+    public List<AccountListResponse> GetListAccounts();
 }
