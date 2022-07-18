@@ -16,4 +16,5 @@ public interface GreetInterface {
     GreetResponse getGreet();
     public boolean AddAccount(String text);
     public List<AccountListResponse> GetListAccounts();
+    public String GetGreetText();
 }

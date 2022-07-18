@@ -57,4 +57,9 @@ public class GreetService implements GreetInterface {
             return new ArrayList<>();
         }
     }
+
+    @Override
+    public String GetGreetText() {
+        return "Greet";
+    }
 }

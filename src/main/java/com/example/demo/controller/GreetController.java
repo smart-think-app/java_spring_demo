@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.core.inter.CarInterface;
 import com.example.demo.core.inter.GreetInterface;
 import com.example.demo.model.api.*;
 import java.util.List;
@@ -12,11 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
+@RequestMapping("/greet-route")
 public class GreetController {
 
     @Autowired
     GreetInterface greetSvc;
-
+    
     @RequestMapping("/greet")
     public GreetResponse sayHello() {
         return greetSvc.getGreet();
