@@ -19,6 +19,8 @@ public class GreetService implements GreetInterface {
     @Autowired
     private AccountRepoInterface AccountRepoInterface;
     
+    @Autowired CustomConfigInterface CustomConfigInterface;
+    
     @Override
     public GreetResponse getGreet() {
         Thread t1 = new Thread(() -> {
@@ -60,6 +62,6 @@ public class GreetService implements GreetInterface {
 
     @Override
     public String GetGreetText() {
-        return "Greet";
+        return "Greet" + " " + this.CustomConfigInterface.GetAppEnv();
     }
 }

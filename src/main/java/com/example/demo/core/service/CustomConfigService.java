@@ -5,6 +5,7 @@
 package com.example.demo.core.service;
 
 import com.example.demo.core.inter.CustomConfigInterface;
+import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
@@ -15,17 +16,19 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class CustomConfigService implements CustomConfigInterface{
-    @Autowired
     private Environment Environment;
     
     private String AppEnv;
     
-    public CustomConfigService(){
+    @Inject
+    public CustomConfigService(Environment Environment){
+        this.Environment = Environment;
+        this.AppEnv = this.Environment.getProperty("app.environment");
     }
 
     @Override
     public String GetAppEnv() {
-        return this.Environment.getProperty("app.environment");
+        return this.AppEnv;
     }
     
     
