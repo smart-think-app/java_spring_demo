@@ -9,5 +9,5 @@ package com.example.demo.core.inter;
  * @author DELL
  */
 public interface CustomConfigInterface {
-    
+    public String GetAppEnv();
 }
